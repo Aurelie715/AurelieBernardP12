@@ -8,10 +8,16 @@ function App() {
   return (
   <div>
     <Header />
-    <LeftSidebar />
-    <Routes>
-      <Route path="/user/:id" element={<Home />}/>
-    </Routes>
+    <div className="page-container">
+      <div className="left-part">
+        <LeftSidebar />
+      </div>
+      <div className="right-part">
+        <Routes>
+          <Route path="/user/:id" element={<Home />}/>
+        </Routes>
+      </div>
+    </div>
   </div>
   );
 }

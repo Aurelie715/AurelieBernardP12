@@ -1,0 +1,12 @@
+.charts-container {
+  display: flex;
+  .container-radarchart {
+    width: 258px;
+    height: 263px;
+    background-color: #282d30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+  }
+}
