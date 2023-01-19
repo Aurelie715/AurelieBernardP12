@@ -44,7 +44,7 @@ export default function RadarChartComponent() {
       outerRadius="65%"
       data={data}
     >
-      <PolarGrid />
+      <PolarGrid radialLines={false}/>
       <PolarAngleAxis dataKey="subject" stroke='white' tickLine={false} axisLine={false} tick={{ fontSize: 10 }}/>
       <Radar
         name="Mike"

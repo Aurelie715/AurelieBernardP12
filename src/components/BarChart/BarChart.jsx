@@ -24,9 +24,8 @@ const data = [
 
 export default function BarChartComponent() {
     return (
+      <ResponsiveContainer width="100%" height="100%">
         <BarChart
-          width={700}
-          height={200}
           data={data}
           margin={{
             top: 5,
@@ -38,12 +37,15 @@ export default function BarChartComponent() {
         >
           <CartesianGrid strokeDasharray="2 2" vertical={false}/>
           <XAxis dataKey="day" tickLine={false} tick={{fontSize: 14}} dy={15} />
-          <YAxis dataKey="kilogram" orientation="right" type="number" domain={['dataMin - 2', 'dataMax + 1']} tickCount="4" tickLine={false} tick={{fontSize: 14}} dx={15} axisLine={false}/>
+          <YAxis dataKey="kilogram" orientation="right" type="number" domain={['dataMin - 2', 'dataMax + 2']} tickCount="4" tickLine={false} tick={{fontSize: 14}} dx={15} axisLine={false}/>
           <YAxis dataKey="calories" type="number" domain={[0, "dataMax + 50"]}/>
           <Tooltip/>
-          <Bar dataKey="kilogram" fill="#E60000" radius={[8, 8, 0, 0]} barSize={7}/>
           <Bar dataKey="calories" fill="#282D30" radius={[8, 8, 0, 0]} barSize={7}/>
+          <Bar dataKey="kilogram" fill="#E60000" radius={[8, 8, 0, 0]} barSize={7}/>
+          
           
         </BarChart>
+      </ResponsiveContainer>
+        
     );
   }

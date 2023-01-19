@@ -1,14 +1,14 @@
 export default class Session {
   constructor(data) {
     this._day = data.day;
-    this._sessionLength = data.sessionLentgh;
+    this._sessionLength = data.sessionLength;
   }
 
   get day() {
     return this._day;
   }
 
-  get sessionLentgh() {
-    return this._sessionLentgh;
+  get sessionLength() {
+    return this._sessionLength;
   }
 }

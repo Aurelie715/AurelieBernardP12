@@ -1,5 +1,46 @@
+.greeting-text {
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 24px;
+  margin-block-start: unset;
+  margin-block-end: unset;
+}
+
+.firstname-text {
+  color: #ff0101;
+  font-style: normal;
+}
+
+.congratulation-text {
+  font-weight: 400;
+  font-size: 18px;
+  margin-top: 31px;
+  margin-bottom: 77px;
+}
+
+.barchart-container {
+  width: 835px;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  background-color: #fbfbfb;
+  margin-bottom: 30px;
+}
+
 .charts-container {
   display: flex;
+  justify-content: space-between;
+  .container-linechart {
+    width: 258px;
+    height: 263px;
+    background-color: #ff0000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+  }
   .container-radarchart {
     width: 258px;
     height: 263px;
@@ -8,5 +49,14 @@
     align-items: center;
     justify-content: center;
     border-radius: 5px;
+  }
+  .container-piechart {
+    width: 258px;
+    height: 263px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    background-color: #fbfbfb;
   }
 }
