@@ -1,5 +1,6 @@
 import React from 'react';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import styles from './BarChart.module.scss'
 
 const data = [
   {
@@ -10,13 +11,13 @@ const data = [
   },
   {
     day: '2',
-    kilogram: 80,
+    kilogram: 60,
     calories: 220,
     
   },
   {
     day: '3',
-    kilogram: 80,
+    kilogram: 70,
     calories: 280,
    
   },
@@ -24,28 +25,34 @@ const data = [
 
 export default function BarChartComponent() {
     return (
-      <ResponsiveContainer width="100%" height="100%">
-        <BarChart
-          data={data}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
-          barGap={8}
-        >
-          <CartesianGrid strokeDasharray="2 2" vertical={false}/>
-          <XAxis dataKey="day" tickLine={false} tick={{fontSize: 14}} dy={15} />
-          <YAxis dataKey="kilogram" orientation="right" type="number" domain={['dataMin - 2', 'dataMax + 2']} tickCount="4" tickLine={false} tick={{fontSize: 14}} dx={15} axisLine={false}/>
-          <YAxis dataKey="calories" type="number" domain={[0, "dataMax + 50"]}/>
-          <Tooltip/>
-          <Bar dataKey="calories" fill="#282D30" radius={[8, 8, 0, 0]} barSize={7}/>
-          <Bar dataKey="kilogram" fill="#E60000" radius={[8, 8, 0, 0]} barSize={7}/>
-          
-          
-        </BarChart>
-      </ResponsiveContainer>
-        
+      <>
+        <div className={styles['header-barchart']}>
+          <h2 className={styles['barchart-title']}>Activité quotidienne</h2>
+          <div className={styles['barchart-legend']}>
+            <p><img src="/black-bullet.svg" alt="" className={styles['black-bullet']}/>Poids (Kg)</p>
+            <p><img src="/red-bullet.svg" alt="" className={styles['red-bullet']}/>Calories brûlées (kCal)</p>
+          </div>
+        </div>
+        <ResponsiveContainer width="100%" height="65%">
+          <BarChart
+            data={data}
+            margin={{
+              top: 5,
+              right: 10,
+              left: 30,
+              bottom: 5,
+            }}
+            barGap={8}
+          >
+            <CartesianGrid strokeDasharray="2 2" vertical={false}/>
+            <XAxis dataKey="day" tickLine={false} tick={{fontSize: 14}} dy={15} />
+            <YAxis yAxisId="right" orientation="right"  tickCount="3" tickLine={false} tick={{fontSize: 14}} dx={15} axisLine={false}/>
+            <YAxis yAxisId="left" orientation="left" hide={true}/>
+            <Tooltip/>
+            <Bar yAxisId="right" dataKey="kilogram" fill="#282D30" radius={[8, 8, 0, 0]} barSize={7}/>
+            <Bar yAxisId="left" dataKey="calories" fill="#E60000" radius={[8, 8, 0, 0]} barSize={7}/>
+          </BarChart>
+        </ResponsiveContainer>
+      </>
     );
   }

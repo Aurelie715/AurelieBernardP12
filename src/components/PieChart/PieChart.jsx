@@ -1,33 +1,38 @@
 import React, { PureComponent } from 'react';
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
+import styles from './PieChart.module.scss'
 
-const data = [
-  { score: 12 },
-  { score: 88 }
-];
 
-export default function PieChartComponent() {
+export default function PieChartComponent({score}) {
+    const data = [{score}];
+    if (score < 100) {
+        data.push({score : 100 - score});
+    }
     return (
-        <ResponsiveContainer width="100%" height="100%">
-            <PieChart>
-                <Pie
-                    data={data}
-                    innerRadius={70}
-                    outerRadius={80}
-                    paddingAngle={5}
-                    startAngle={90}
-                    dataKey="score"
-                >
-                    {data.map((entry, index) =>
-                        index === 0 ? (
-                            <Cell key={`cell-${index}`} cornerRadius={10} fill="#ff0000" />
-                        ) : (
-                            <Cell key={`cell-${index}`} fill="#fbfbfb" stroke="#fbfbfb"/>
-                        )
-                    )}
-                </Pie>
-            </PieChart>
-        </ResponsiveContainer>
-        
+        <>
+            <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                    <Pie
+                        data={data}
+                        innerRadius={70}
+                        outerRadius={80}
+                        dataKey="score"
+                    >
+                        {data.map((entry, index) => (
+                            <Cell
+                                key={`cell-${index}`}
+                                fill={index === 0 ? "#ff0000" : "#fbfbfb"}
+                                stroke={index === 0 ? null : "#fbfbfb"}
+                                cornerRadius={index === 0 ? 10 : null}
+                            />
+                        ))}
+                    </Pie>
+                </PieChart>
+            </ResponsiveContainer>
+            <div className={styles['container-score']}>
+                <p className={styles['score-percentage']}>{score}%</p>
+                <p className={styles['score-description']}>de votre objectif</p>
+            </div>
+        </>
     );
 } 

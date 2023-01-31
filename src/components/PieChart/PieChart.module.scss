@@ -1,0 +1,20 @@
+.container-score {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 80px;
+  p {
+    margin-block-start: unset;
+    margin-block-end: unset;
+    text-align: center;
+  }
+  .score-percentage {
+    font-weight: 700;
+    font-size: 26px;
+  }
+  .score-description {
+    font-weight: 700;
+    font-size: 16px;
+    color: #74798c;
+  }
+}

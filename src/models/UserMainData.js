@@ -4,6 +4,7 @@ export default class UserMainData {
     this._firstName = data.userInfos.firstName;
     this._lastName = data.userInfos.lastName;
     this._age = data.userInfos.age;
+    this._score = data.score;
     this._todayScore = data.todayScore;
     this._calorieCount = data.keyData.calorieCount;
     this._proteinCount = data.keyData.proteinCount;
@@ -25,6 +26,10 @@ export default class UserMainData {
 
   get age() {
     return this._age;
+  }
+
+  get realScore() {
+    return this._score || this._todayScore;
   }
 
   get todayScore() {
