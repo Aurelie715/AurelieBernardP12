@@ -24,6 +24,18 @@ const data = [
 ];
 
 export default function BarChartComponent() {
+  const CustomTooltip = ({active, payload}) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className={styles.tooltip}>
+          <p className={styles['tooltip-text']}>{`${payload[0].value}kg`}</p>
+          <p className={styles['tooltip-text']}>{`${payload[0].payload.calories}kcal`}</p>
+        </div>
+      )
+      
+    }
+    return null;
+  }
     return (
       <>
         <div className={styles['header-barchart']}>
@@ -48,7 +60,7 @@ export default function BarChartComponent() {
             <XAxis dataKey="day" tickLine={false} tick={{fontSize: 14}} dy={15} />
             <YAxis yAxisId="right" orientation="right"  tickCount="3" tickLine={false} tick={{fontSize: 14}} dx={15} axisLine={false}/>
             <YAxis yAxisId="left" orientation="left" hide={true}/>
-            <Tooltip/>
+            <Tooltip content={<CustomTooltip />} wrapperStyle={{ outline: "none" }}/>
             <Bar yAxisId="right" dataKey="kilogram" fill="#282D30" radius={[8, 8, 0, 0]} barSize={7}/>
             <Bar yAxisId="left" dataKey="calories" fill="#E60000" radius={[8, 8, 0, 0]} barSize={7}/>
           </BarChart>

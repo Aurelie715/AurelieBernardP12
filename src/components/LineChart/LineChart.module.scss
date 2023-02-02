@@ -10,3 +10,16 @@
   color: #ffffff;
   opacity: 0.5;
 }
+
+.tooltip {
+  width: 39px;
+  height: 25px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .tooltip-text {
+    font-weight: 500;
+    font-size: 8px;
+  }
+}

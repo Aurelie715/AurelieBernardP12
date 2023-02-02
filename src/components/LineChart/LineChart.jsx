@@ -5,39 +5,51 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 const data = [
   {
     day: "L",
-    sessionsLenght: 30,
+    sessionsLength: 30,
   },
   {
     day: "M",
-    sessionsLenght: 23,
+    sessionsLength: 23,
   },
   {
     day: "M",
-    sessionsLenght: 45,
+    sessionsLength: 45,
   },
   {
     day: "J",
-    sessionsLenght: 50,
+    sessionsLength: 50,
   },
   {
     day: "V",
-    sessionsLenght: 0,
+    sessionsLength: 0,
   },
   {
     day: "S",
-    sessionsLenght: 0,
+    sessionsLength: 0,
   },
   {
     day: "D",
-    sessionsLenght: 60,
+    sessionsLength: 60,
   },
 ];
 
 export default function LineChartComponent() {
-  const CustomizedCursor = (props) => {
-    const {width, height, points } = props;
-    return <Rectangle fill="black" stroke="black" x={points[0]} width={width} height={height*2} />;
+  // const CustomizedCursor = (props) => {
+  //   const {width, height, points } = props;
+  //   return <Rectangle fill="black" stroke="black" x={points[0]} width={width} height={height*2} />;
+  // }
+
+  const CustomTooltip = ({payload}) => {
+    if (payload && payload.length) {
+      return (
+        <div className={styles.tooltip}>
+          <p className={styles['tooltip-text']}>{`${payload[0].value}min`}</p>
+        </div>
+      )
+    }
+    return null;
   }
+  
   return (
     <>
     <h2 className={styles.title}>Durée moyenne des sessions</h2>
@@ -60,9 +72,9 @@ export default function LineChartComponent() {
           </linearGradient>
         </defs>
         <XAxis dataKey="day" tickLine={false} tick={{ opacity: 0.5 }} stroke="white" axisLine={false} />
-        <Tooltip cursor={<CustomizedCursor />} />
+        <Tooltip content={<CustomTooltip />} wrapperStyle={{ outline: "none" }}/>
         <ReferenceArea x1={5} x2={6}/>
-        <Line type="monotone" dataKey="sessionsLenght" stroke="url(#colorUv)" strokeWidth={3} strokeOpacity="0.5" dot="" />
+        <Line type="monotone" dataKey="sessionsLength" stroke="url(#colorUv)" strokeWidth={3} strokeOpacity="0.5" dot="" />
       </LineChart>
     </ResponsiveContainer></>
   );

@@ -26,3 +26,18 @@
     }
   }
 }
+
+.tooltip {
+  width: 39px;
+  height: 63px;
+  background-color: #e60000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .tooltip-text {
+    font-weight: 500;
+    font-size: 8px;
+    color: #ffffff;
+  }
+}
