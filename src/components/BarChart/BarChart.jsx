@@ -2,28 +2,28 @@ import React from 'react';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import styles from './BarChart.module.scss'
 
-const data = [
-  {
-    day: '1',
-    kilogram: 80,
-    calories: 240,
+// const data = [
+//   {
+//     day: '1',
+//     kilogram: 80,
+//     calories: 240,
    
-  },
-  {
-    day: '2',
-    kilogram: 60,
-    calories: 220,
+//   },
+//   {
+//     day: '2',
+//     kilogram: 60,
+//     calories: 220,
     
-  },
-  {
-    day: '3',
-    kilogram: 70,
-    calories: 280,
+//   },
+//   {
+//     day: '3',
+//     kilogram: 70,
+//     calories: 280,
    
-  },
-];
+//   },
+// ];
 
-export default function BarChartComponent() {
+export default function BarChartComponent({data}) {
   const CustomTooltip = ({active, payload}) => {
     if (active && payload && payload.length) {
       return (

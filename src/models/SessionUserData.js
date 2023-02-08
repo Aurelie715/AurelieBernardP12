@@ -1,6 +1,6 @@
 export default class Session {
   constructor(data) {
-    this._day = data.day;
+    this._day = new Date(data.day).getDate();
     this._kilogram = data.kilogram;
     this._calories = data.calories;
   }

@@ -1,13 +1,13 @@
 import Data from "./Data";
-export default class userPerformance {
+export default class UserPerformance {
   constructor(data) {
     this._userId = data.userId;
-    this._1 = data.kind["1"];
-    this._2 = data.kind["2"];
-    this._3 = data.kind["3"];
-    this._4 = data.kind["4"];
-    this._5 = data.kind["5"];
-    this._6 = data.kind["6"];
+    this._kind = data.kind;
+    // this._energy = data.kind["2"];
+    // this._endurance = data.kind["3"];
+    // this._strength = data.kind["4"];
+    // this._speed = data.kind["5"];
+    // this._intensity = data.kind["6"];
     this._data = data.data.map((element) => new Data(element));
   }
 
@@ -15,29 +15,29 @@ export default class userPerformance {
     return this._userId;
   }
 
-  get kind1() {
-    return this._1;
+  get kind() {
+    return this._kind;
   }
 
-  get kind2() {
-    return this._2;
-  }
+  // get energy() {
+  //   return this._energy;
+  // }
 
-  get kind3() {
-    return this._3;
-  }
+  // get endurance() {
+  //   return this._endurance;
+  // }
 
-  get kind4() {
-    return this._4;
-  }
+  // get strength() {
+  //   return this._strength;
+  // }
 
-  get kind5() {
-    return this._5;
-  }
+  // get speed() {
+  //   return this._speed;
+  // }
 
-  get kind6() {
-    return this._6;
-  }
+  // get intensity() {
+  //   return this._intensity;
+  // }
 
   get data() {
     return this._data;

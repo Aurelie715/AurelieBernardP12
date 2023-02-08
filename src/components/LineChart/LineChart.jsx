@@ -2,38 +2,38 @@ import React, { PureComponent } from "react";
 import styles from './LineChart.module.scss'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceArea, Rectangle } from "recharts";
 
-const data = [
-  {
-    day: "L",
-    sessionsLength: 30,
-  },
-  {
-    day: "M",
-    sessionsLength: 23,
-  },
-  {
-    day: "M",
-    sessionsLength: 45,
-  },
-  {
-    day: "J",
-    sessionsLength: 50,
-  },
-  {
-    day: "V",
-    sessionsLength: 0,
-  },
-  {
-    day: "S",
-    sessionsLength: 0,
-  },
-  {
-    day: "D",
-    sessionsLength: 60,
-  },
-];
+// const data = [
+//   {
+//     day: "L",
+//     sessionsLength: 30,
+//   },
+//   {
+//     day: "M",
+//     sessionsLength: 23,
+//   },
+//   {
+//     day: "M",
+//     sessionsLength: 45,
+//   },
+//   {
+//     day: "J",
+//     sessionsLength: 50,
+//   },
+//   {
+//     day: "V",
+//     sessionsLength: 0,
+//   },
+//   {
+//     day: "S",
+//     sessionsLength: 0,
+//   },
+//   {
+//     day: "D",
+//     sessionsLength: 60,
+//   },
+// ];
 
-export default function LineChartComponent() {
+export default function LineChartComponent({data}) {
   // const CustomizedCursor = (props) => {
   //   const {width, height, points } = props;
   //   return <Rectangle fill="black" stroke="black" x={points[0]} width={width} height={height*2} />;
@@ -72,9 +72,10 @@ export default function LineChartComponent() {
           </linearGradient>
         </defs>
         <XAxis dataKey="day" tickLine={false} tick={{ opacity: 0.5 }} stroke="white" axisLine={false} />
-        <Tooltip content={<CustomTooltip />} wrapperStyle={{ outline: "none" }}/>
-        <ReferenceArea x1={5} x2={6}/>
-        <Line type="monotone" dataKey="sessionsLength" stroke="url(#colorUv)" strokeWidth={3} strokeOpacity="0.5" dot="" />
+        <Tooltip content={<CustomTooltip />} wrapperStyle={{ outline: "none" }} cursor={{stroke: "black",
+              strokeOpacity: 0.05,
+              strokeWidth: 50,}}/>
+        <Line type="monotone" dataKey="sessionLength" stroke="url(#colorUv)" strokeWidth={3} strokeOpacity="0.5" dot="" />
       </LineChart>
     </ResponsiveContainer></>
   );

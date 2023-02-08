@@ -2,7 +2,7 @@ import Session from "./Session";
 
 export default class UserAverageSessions {
   constructor(data) {
-    this.userId = data.userId;
+    this._userId = data.userId;
     this._sessions = data.sessions.map((element) => new Session(element));
   }
 

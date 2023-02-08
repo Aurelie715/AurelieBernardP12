@@ -7,25 +7,30 @@ import LineChart from '../../components/LineChart/LineChart';
 import RadarChart from '../../components/RadarChart/RadarChart';
 import PieChart from '../../components/PieChart/PieChart';
 import Card from '../../components/Card/Card';
-import UserMainData from '../../models/UserMainData';
+import { getUser, getUserActivity, getUserAverageSessions, getUserPerformance } from '../../services/Service';
 
 
 export default function Home() {
   const { id } = useParams();
-  // for API
+  // // for API
   const [user, setUser] = useState(null);
+  const [activity, setActivity] = useState(null);
+  const [averageSessions, setAverageSessions] = useState(null);
+  const [performance, setPerformance] = useState(null);
 
-  //for mock data
-  // const user = UserDatas.userMainData.find((userMainData) => userMainData.id === parseInt(id));
+  // //for mock data
+  // // const user = UserDatas.userMainData.find((userMainData) => userMainData.id === parseInt(id));
 
-  // for API
+  // // for API
   useEffect( () => {
-    fetch(`http://localhost:8080/user/${id}`)
-    .then(response => response.json())
-    .then(({data}) => setUser(new UserMainData(data)));
+    getUser(id).then((user) => setUser(user));
+    getUserPerformance(id).then((performance) => setPerformance(performance));
+    getUserAverageSessions(id).then((averageSessions) => setAverageSessions(averageSessions));
+    getUserActivity(id).then((activity) => setActivity(activity));
+    
   }, [id]);
   
-  if (user === null) {
+  if (user === null || activity === null || averageSessions === null || performance === null) {
     return <></>;
   }
 
@@ -40,17 +45,17 @@ export default function Home() {
     <div className={styles.container}>
       <div className={styles['container-left']}>
         <div className={styles['barchart-container']}>
-          <BarChart />
+          <BarChart data={activity.sessions}/>
         </div>
         <div className={styles['charts-container']}>
           <div className={styles['container-linechart']}>
-          <LineChart />
+          <LineChart data={averageSessions.sessions}/>
           </div>
           <div className={styles['container-radarchart']}>
-            <RadarChart />
+            <RadarChart data={performance}/>
           </div>
           <div className={styles['container-piechart']}>
-          <PieChart score={user.realScore*100 } />
+            <PieChart score={user.realScore*100 } />
           </div>
         </div>
       </div>

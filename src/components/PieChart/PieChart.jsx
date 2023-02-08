@@ -1,7 +1,12 @@
-import React, { PureComponent } from 'react';
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
+import React from 'react';
+import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import styles from './PieChart.module.scss'
 
+const whiteCircle = [
+    {
+        name: "value: 100"
+    }
+]
 
 export default function PieChartComponent({score}) {
     const data = [{score}];
@@ -10,8 +15,15 @@ export default function PieChartComponent({score}) {
     }
     return (
         <>
-            <ResponsiveContainer width="100%" height="100%">
+            <h2 className={styles.title}>Score</h2>
+            <ResponsiveContainer className={styles['piechart-container']} width="100%" height="100%">
                 <PieChart>
+                {/* <Pie
+                        data={whiteCircle}
+                        dataKey="value"
+                        outerRadius={90}
+                        fill="#82ca9d"
+                    /> */}
                     <Pie
                         data={data}
                         innerRadius={70}
@@ -27,6 +39,7 @@ export default function PieChartComponent({score}) {
                             />
                         ))}
                     </Pie>
+                   
                 </PieChart>
             </ResponsiveContainer>
             <div className={styles['container-score']}>
