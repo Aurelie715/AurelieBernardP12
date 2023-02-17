@@ -35,4 +35,5 @@ To switch between mocked data and data from API you can in the file src/services
 ## 4. Switch user
 
 To switch user modify the id of the user in the URL in your browser. Only the id 12 and 18 work.
+
 Exemple : `http://localhost:3000/user/12`
