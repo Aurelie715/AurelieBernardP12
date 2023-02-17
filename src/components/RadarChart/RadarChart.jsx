@@ -4,43 +4,20 @@ import {
   RadarChart,
   PolarGrid,
   PolarAngleAxis,
-  PolarRadiusAxis,
   ResponsiveContainer
 } from "recharts";
+import PropTypes from 'prop-types'
 
-// const data = [
-//   {
-//     subject: "cardio",
-//     value: 80,
-//   },
-//   {
-//     subject: "energy",
-//     value: 120,
-//   },
-//   {
-//     subject: "endurance",
-//     value: 140,
-//   },
-//   {
-//     subject: "strength",
-//     value: 50,
-//   },
-//   {
-//     subject: "speed",
-//     value: 200,
-//   },
-//   {
-//     subject: "intensity",
-//     value: 90,
-//   }
-// ];
-
-export default function RadarChartComponent({data}) {
+/**
+ * Function use to display the radar chart
+ * @param {object} data 
+ * @returns {JSX.Element}
+ */
+function RadarChartComponent({data}) {
   const radarData = data.data.map(({value, kind}) => {
     const lowerCaseKind = data.kind[kind]
     return {value, kind: lowerCaseKind.charAt(0).toUpperCase() + lowerCaseKind.slice(1)}
   }) 
-  console.log(data);
   return (
     <ResponsiveContainer width="100%" height="100%">
         <RadarChart
@@ -62,3 +39,9 @@ export default function RadarChartComponent({data}) {
     </ResponsiveContainer>
   );
 }
+
+RadarChartComponent.propTypes = {
+  data: PropTypes.object.isRequired,
+}
+
+export default RadarChartComponent

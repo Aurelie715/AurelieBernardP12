@@ -2,6 +2,10 @@ import React from 'react'
 import styles from './LeftSidebar.module.scss'
 import LeftSidebarIcon from './LeftSidebarIcon/LeftSidebarIcon'
 
+/**
+ * Function use to display the left sidebar of the app
+ * @returns {JSX.Element}
+ */
 export default function LeftSidebar() {
   return (
     <aside className={styles['left-sidebar']}>

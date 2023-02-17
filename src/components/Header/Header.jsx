@@ -2,6 +2,10 @@ import React from 'react'
 import logo from '../../assets/sportsee-logo.svg'
 import styles from './Header.module.scss'
 
+/**
+ * Function use to display the header of the app
+ * @returns {JSX.Element}
+ */
 export default function Header() {
   return (
     <header className={styles.header}>

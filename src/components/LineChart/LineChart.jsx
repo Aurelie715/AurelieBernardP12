@@ -1,82 +1,112 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import styles from './LineChart.module.scss'
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceArea, Rectangle } from "recharts";
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, Rectangle} from "recharts";
+import PropTypes from 'prop-types'
 
-// const data = [
-//   {
-//     day: "L",
-//     sessionsLength: 30,
-//   },
-//   {
-//     day: "M",
-//     sessionsLength: 23,
-//   },
-//   {
-//     day: "M",
-//     sessionsLength: 45,
-//   },
-//   {
-//     day: "J",
-//     sessionsLength: 50,
-//   },
-//   {
-//     day: "V",
-//     sessionsLength: 0,
-//   },
-//   {
-//     day: "S",
-//     sessionsLength: 0,
-//   },
-//   {
-//     day: "D",
-//     sessionsLength: 60,
-//   },
-// ];
-
-export default function LineChartComponent({data}) {
-  // const CustomizedCursor = (props) => {
-  //   const {width, height, points } = props;
-  //   return <Rectangle fill="black" stroke="black" x={points[0]} width={width} height={height*2} />;
-  // }
-
-  const CustomTooltip = ({payload}) => {
-    if (payload && payload.length) {
-      return (
-        <div className={styles.tooltip}>
-          <p className={styles['tooltip-text']}>{`${payload[0].value}min`}</p>
-        </div>
-      )
-    }
-    return null;
+/**
+ * create a customize tooltip
+ * @param {array} payload the data the tooltip will be displaying from the chart
+ * @returns CustomTooltip
+ */
+const CustomTooltip = ({payload}) => {
+  if (payload && payload.length) {
+    return (
+      <div className={styles.tooltip}>
+        <p className={styles['tooltip-text']}>{`${payload[0].value}min`}</p>
+      </div>
+    )
   }
-  
+  return null;
+}
+
+/**
+ * create a customize cursor in the shape of a rectangle 
+ * @param {array} points the current position of the cursor coordinate x and y
+ * @param {number} width the width of the graph
+ * @returns CustomCursor
+ */
+const CustomCursor = ({ points, width }) => {
+  const [{ x }] = points;
+  return (
+    <Rectangle fill="hsla(0, 0%, 0%, 9.75%)" x={x} width={width} height={300} />
+  )
+}
+
+/**
+ * Function use to change the number of the day in the first letter of the day
+ * @param {number} dayNumber 
+ * @returns dayFirstLetter
+ */
+const dayFirstLetter = (dayNumber) => {
+  const days = ["L", "M", "M", "J", "V", "S", "D"];
+  return days[dayNumber - 1];
+}
+
+/**
+ * Function use to display a chart showing the duration of everyday sport activity
+ * @param {array} data Data from UserAverageSessions
+ * @returns {JSX.Element} 
+ */
+function LineChartComponent({data}) {
   return (
     <>
     <h2 className={styles.title}>Durée moyenne des sessions</h2>
-    <ResponsiveContainer width="100%" height="90%">
+    <ResponsiveContainer width="100%" height="100%">
       <LineChart
         data={data}
         margin={{
           top: 40,
           right: 0,
           left: 5,
-          bottom: 0,
+          bottom: 40,
         }}
       >
         <defs>
           <linearGradient id="colorUv" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="white" stopOpacity={0.2} />
-            <stop offset="50%" stopColor="white" stopOpacity={0.5} />
+            <stop offset="0%" stopColor="white" stopOpacity={0.4} />
+            <stop offset="50%" stopColor="white" stopOpacity={0.8} />
             <stop offset="70%" stopColor="white" stopOpacity={1} />
             <stop offset="100%" stopColor="white" />
           </linearGradient>
         </defs>
-        <XAxis dataKey="day" tickLine={false} tick={{ opacity: 0.5 }} stroke="white" axisLine={false} />
-        <Tooltip content={<CustomTooltip />} wrapperStyle={{ outline: "none" }} cursor={{stroke: "black",
-              strokeOpacity: 0.05,
-              strokeWidth: 50,}}/>
-        <Line type="monotone" dataKey="sessionLength" stroke="url(#colorUv)" strokeWidth={3} strokeOpacity="0.5" dot="" />
+        <XAxis dataKey="day" tickLine={false} tick={{ opacity: 0.5 }} stroke="white" axisLine={false} tickMargin={20} tickFormatter={dayFirstLetter} style={{transform:"scale(0.9)", transformOrigin:"bottom"}}/>
+        <YAxis
+            type="number"
+            domain={['dataMin', 'dataMax + 20']}
+            hide="true"
+        />
+        <Tooltip content={<CustomTooltip />} wrapperStyle={{ outline: "none" }} cursor={<CustomCursor />}/>
+        <Line type="monotone" 
+              dataKey="sessionLength" 
+              stroke="url(#colorUv)" 
+              strokeWidth={3} 
+              strokeOpacity="0.5" 
+              dot={false} 
+              activeDot={{stroke: "white", strokeOpacity: 0.2, fill: "white", strokeWidth: 12, r: 4,}}
+        />
       </LineChart>
     </ResponsiveContainer></>
   );
 }
+
+CustomTooltip.propTypes = {
+  payload: PropTypes.array
+}
+
+CustomCursor.propTypes = {
+  points: PropTypes.array,
+  width: PropTypes.number
+}
+
+dayFirstLetter.propTypes = {
+  dayNumber: PropTypes.number
+}
+
+LineChartComponent.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape({
+    day: PropTypes.number,
+    sessionLength: PropTypes.number
+  })).isRequired,
+}
+
+export default LineChartComponent

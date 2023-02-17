@@ -1,14 +1,14 @@
 import React from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import styles from './PieChart.module.scss'
+import PropTypes from 'prop-types'
 
-const whiteCircle = [
-    {
-        name: "value: 100"
-    }
-]
-
-export default function PieChartComponent({score}) {
+/**
+ * Function use to display the score chart
+ * @param {number} score 
+ * @returns {JSX.Element}
+ */
+function PieChartComponent({score}) {
     const data = [{score}];
     if (score < 100) {
         data.push({score : 100 - score});
@@ -18,12 +18,6 @@ export default function PieChartComponent({score}) {
             <h2 className={styles.title}>Score</h2>
             <ResponsiveContainer className={styles['piechart-container']} width="100%" height="100%">
                 <PieChart>
-                {/* <Pie
-                        data={whiteCircle}
-                        dataKey="value"
-                        outerRadius={90}
-                        fill="#82ca9d"
-                    /> */}
                     <Pie
                         data={data}
                         innerRadius={70}
@@ -49,3 +43,9 @@ export default function PieChartComponent({score}) {
         </>
     );
 } 
+
+PieChartComponent.propTypes = {
+    score: PropTypes.number.isRequired
+  }
+
+export default PieChartComponent
