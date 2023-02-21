@@ -9,6 +9,7 @@ import PropTypes from 'prop-types'
  * @returns {JSX.Element}
  */
 function BarChartComponent({data}) {
+  
   /**
    * create a customize tooltip
    * @param {array} payload the data the tooltip will be displaying from the chart
@@ -26,6 +27,7 @@ function BarChartComponent({data}) {
     }
     return null;
   }
+
   return (
     <>
       <div className={styles['header-barchart']}>

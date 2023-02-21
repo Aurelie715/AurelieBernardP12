@@ -34,8 +34,8 @@ export default function Home() {
   return (
     <>
       <div>
-          <p className={styles['greeting-text']}>Bonjour <em className={styles['firstname-text']}>{user.firstName}</em></p>
-          <p className={styles['congratulation-text']}>Félicitation ! Vous avez explosé vos objectifs hier &#128079;</p>
+        <p className={styles['greeting-text']}>Bonjour <em className={styles['firstname-text']}>{user.firstName}</em></p>
+        <p className={styles['congratulation-text']}>Félicitation ! Vous avez explosé vos objectifs hier &#128079;</p>
       </div>
       <div className={styles.container}>
         <div className={styles['container-left']}>
@@ -44,7 +44,7 @@ export default function Home() {
           </div>
           <div className={styles['charts-container']}>
             <div className={styles['container-linechart']}>
-            <LineChart data={averageSessions.sessions}/>
+              <LineChart data={averageSessions.sessions}/>
             </div>
             <div className={styles['container-radarchart']}>
               <RadarChart data={performance}/>

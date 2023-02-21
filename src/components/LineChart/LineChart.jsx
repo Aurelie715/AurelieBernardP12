@@ -50,42 +50,43 @@ const dayFirstLetter = (dayNumber) => {
 function LineChartComponent({data}) {
   return (
     <>
-    <h2 className={styles.title}>Durée moyenne des sessions</h2>
-    <ResponsiveContainer width="100%" height="100%">
-      <LineChart
-        data={data}
-        margin={{
-          top: 40,
-          right: 0,
-          left: 5,
-          bottom: 40,
-        }}
-      >
-        <defs>
-          <linearGradient id="colorUv" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="white" stopOpacity={0.4} />
-            <stop offset="50%" stopColor="white" stopOpacity={0.8} />
-            <stop offset="70%" stopColor="white" stopOpacity={1} />
-            <stop offset="100%" stopColor="white" />
-          </linearGradient>
-        </defs>
-        <XAxis dataKey="day" tickLine={false} tick={{ opacity: 0.5 }} stroke="white" axisLine={false} tickMargin={20} tickFormatter={dayFirstLetter} style={{transform:"scale(0.9)", transformOrigin:"bottom"}}/>
-        <YAxis
-            type="number"
-            domain={['dataMin', 'dataMax + 20']}
-            hide="true"
-        />
-        <Tooltip content={<CustomTooltip />} wrapperStyle={{ outline: "none" }} cursor={<CustomCursor />}/>
-        <Line type="monotone" 
-              dataKey="sessionLength" 
-              stroke="url(#colorUv)" 
-              strokeWidth={3} 
-              strokeOpacity="0.5" 
-              dot={false} 
-              activeDot={{stroke: "white", strokeOpacity: 0.2, fill: "white", strokeWidth: 12, r: 4,}}
-        />
-      </LineChart>
-    </ResponsiveContainer></>
+      <h2 className={styles.title}>Durée moyenne des sessions</h2>
+      <ResponsiveContainer width="100%" height="100%">
+        <LineChart
+          data={data}
+          margin={{
+            top: 40,
+            right: 0,
+            left: 5,
+            bottom: 40,
+          }}
+        >
+          <defs>
+            <linearGradient id="colorUv" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="white" stopOpacity={0.4} />
+              <stop offset="50%" stopColor="white" stopOpacity={0.8} />
+              <stop offset="70%" stopColor="white" stopOpacity={1} />
+              <stop offset="100%" stopColor="white" />
+            </linearGradient>
+          </defs>
+          <XAxis dataKey="day" tickLine={false} tick={{ opacity: 0.5 }} stroke="white" axisLine={false} tickMargin={20} tickFormatter={dayFirstLetter} style={{transform:"scale(0.9)", transformOrigin:"bottom"}}/>
+          <YAxis
+              type="number"
+              domain={['dataMin', 'dataMax + 20']}
+              hide="true"
+          />
+          <Tooltip content={<CustomTooltip />} wrapperStyle={{ outline: "none" }} cursor={<CustomCursor />}/>
+          <Line type="monotone" 
+                dataKey="sessionLength" 
+                stroke="url(#colorUv)" 
+                strokeWidth={3} 
+                strokeOpacity="0.5" 
+                dot={false} 
+                activeDot={{stroke: "white", strokeOpacity: 0.2, fill: "white", strokeWidth: 12, r: 4,}}
+          />
+        </LineChart>
+      </ResponsiveContainer>
+    </>
   );
 }
 

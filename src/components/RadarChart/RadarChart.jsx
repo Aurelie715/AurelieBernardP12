@@ -20,22 +20,21 @@ function RadarChartComponent({data}) {
   }) 
   return (
     <ResponsiveContainer width="100%" height="100%">
-        <RadarChart
+      <RadarChart
       cx="50%"
       cy="50%"
       outerRadius="65%"
       data={radarData}
-    >
-      <PolarGrid radialLines={false}/>
-      <PolarAngleAxis dataKey="kind" stroke='white' tickLine={false} axisLine={false} tick={{ fontSize: 10 }}/>
-      <Radar
-        name="Mike"
-        dataKey="value"
-        stroke="#FF0101"
-        fill="#FF0101"
-        fillOpacity={0.7}
-      />
-    </RadarChart>
+      >
+        <PolarGrid radialLines={false}/>
+        <PolarAngleAxis dataKey="kind" stroke='white' tickLine={false} axisLine={false} tick={{ fontSize: 10 }}/>
+        <Radar
+          dataKey="value"
+          stroke="#FF0101"
+          fill="#FF0101"
+          fillOpacity={0.7}
+        />
+      </RadarChart>
     </ResponsiveContainer>
   );
 }
