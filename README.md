@@ -13,7 +13,8 @@
 - Clone it on your computer.
 - The `npm i` command will allow you to install the dependencies.
 - The `npm run dev` command will allow you to run the micro API.
-  **The server is running on port 8080**
+
+**The server is running on port 8080**
 
 ## 2. Front-end
 
