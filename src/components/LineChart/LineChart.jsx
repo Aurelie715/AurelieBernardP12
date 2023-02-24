@@ -69,7 +69,8 @@ function LineChartComponent({data}) {
               <stop offset="100%" stopColor="white" />
             </linearGradient>
           </defs>
-          <XAxis dataKey="day" tickLine={false} tick={{ opacity: 0.5 }} stroke="white" axisLine={false} tickMargin={20} tickFormatter={dayFirstLetter} style={{transform:"scale(0.9)", transformOrigin:"bottom"}}/>
+          <XAxis dataKey="day" tickLine={false} tick={{ opacity: 0.5 }} stroke="white" axisLine={false} tickMargin={20} 
+              tickFormatter={dayFirstLetter} style={{transform:"scale(0.9)", transformOrigin:"bottom"}}/>
           <YAxis
               type="number"
               domain={['dataMin', 'dataMax + 20']}

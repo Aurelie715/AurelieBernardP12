@@ -4,7 +4,7 @@ import UserAverageSessions from '../models/UserAverageSessions';
 import UserData from '../models/UserData';
 import UserDatas from '../data/userData.json';
 
-const mockData = true;
+const mockData = false;
 
 
     export async function getUser(id) {
